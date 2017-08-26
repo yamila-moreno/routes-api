@@ -1,3 +1,4 @@
 Django==1.11.4
 djangorestframework==3.6.4
 pytest==3.2.1
+gunicorn==19.7.1

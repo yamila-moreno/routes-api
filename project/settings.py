@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'routes',
+        'NAME': os.environ.get('POSTGRES_DB', 'routes'),
         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
         'PASSWORD': '',
         'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
@@ -127,6 +127,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    # 'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [],
     'PAGINATE_BY': 10
 }
