@@ -138,5 +138,7 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = (
     'routes.com',
+    'localhost:9000',
+    'localhost:8000',
 )
 
