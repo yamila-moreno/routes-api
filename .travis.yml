@@ -10,12 +10,13 @@ env:
   global:
     - secure: "G+8KyEaXSDvcgUGGoXgK6m2yrf2cADjqbtYCXy/YOdSiSTuucFc5nyqQt5yJxl501JJu3OGj4ZGIHzHAXHglTpWqSG86+ioO4TAGD2OUSWcqXuwDJmYbg6Xqt1hSxyi92yfEY+R756zOVFzmoTK3DQJpVT+2Q0a33HhH/weBCQQqOqr1aYxIUW/TLW9MpszOq58aZEucw+gepq63yyVyHZakOZqJKXxI0wLMHDW2j6Lak8FoUHmIqvf7arEqbJqKa2ZtMyRj3uAHeIg2Ycvgl4hFgux6mSoe6i8UIB+rRbHnfqEzJeqTC6FQo07MQtKIpiRdR+qxqQfQ0m7K4SkirGKSqmfXgtbuC/NsKRKk87RawL/IDuW7EBsl6Ktg1RFUaYxtWdGqWB6RQgb2ewIIOvIPoJKA/dIMvmOQ8pcZMqm8yMtSxVuJLTdRR371Fkz9gfLZs2k6PJXVOMgienjlcRIqtsRg9yLcMPkJC86Wq5/JZk+mBLF3L+FdPFC2+OSNApMAbjQzv4wMe6+KfTBd5/BH1qeccsdG17PHM7UUMd3m7XtYg55dWq57EwWqWYE/5Sw1yYhPbchh5/YYuoDNn4v2u6qWPO3vEM3Ycq6SCw+hdFh+YIHFlmuuXmLLv8fyMwttj/0zlWrzibubimKO/MjvyjEEaKFygjGRE0dWiT0=" # DOCKER_USER
     - secure: "X1M4tt6zA6Y3LCH4kM6KlpGvKdNdUtUMWcWRTMe3Gkr5k3qCy3MgvVgFOT0ZuKjYelXOVG1/Qqjt8L+F8yTl1paK8StPM63PNJJKUt0UY4Nw7d3cSt/Nn+TYztmfldNvGR6oIOUZfhf6/psYRa5HHm63sNcCeqM3KqzbfwKRv6JRsmxGV6LdiLdsu5NhwKjCCy/0xggcYRFL9Jwet3t58nIuOHCPTCshtWBAvcJyf1KYPRBxSddqITPvir+F/J/L3E4j5gQ1+XX/jlykn9e8qhz6IIuhf5GjNMrMLIxUorQVY/idRzZzf3W2eXZaBKHyKpZS8CXoMlwDtnkrR4Cw27iDN0w42rZ1va70l7WBKAgmurg3fyp2teZuuiiOf1hUWnppmwVE+XMixYUbswlIU6DjKZbWY6aDra3ruABi/ASNxtfgEq3R1dTj2qKrcxs6o+/oGks9ZzvvP+w6B3tSyj9NgNr3VOg20aN+nyCirU/iMhNsgdd71XVZ/AOGVLSKAlqIeLVyb3ZwFVai/J/issGzIv0jmLwkWBD2A6/qNxxqNAEtcjxYmnGY+9whBuuCcRssGW1mfqxd7o45vfs8gQXAx3cr5xcT/cPpLD5uTzrVX0wUxkXwkQkAU7kUYTgp2rEutQ/nKuasWhNrTyM9dh3Qd0929hCWx/KxDCPzYQM=" # DOCKER_PASS
+    - TEST_ENV=test_env
 
 before_script:
   - docker build -f Dockerfile -t ryms/routes_api:$TRAVIS_COMMIT .
 
 script:
-  - docker run ryms/routes_api:$TRAVIS_COMMIT /myvenv/bin/pytest
+  - docker run -e TEST_ENV ryms/routes_api:$TRAVIS_COMMIT /myvenv/bin/pytest
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
