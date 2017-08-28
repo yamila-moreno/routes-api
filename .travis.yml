@@ -15,7 +15,7 @@ before_script:
   - docker build -f Dockerfile -t ryms/routes_api:$TRAVIS_COMMIT .
 
 script:
-  - docker run ryms/routes_api:$TRAVIS_COMMIT pytest
+  - docker run ryms/routes_api:$TRAVIS_COMMIT /myvenv/bin/pytest
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
