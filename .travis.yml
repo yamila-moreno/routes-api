@@ -13,11 +13,11 @@ env:
     - TEST_ENV=test_env
 
 before_script:
-  - docker build -f Dockerfile -t ryms/routes_api:$TRAVIS_COMMIT .
+  - docker build -f Dockerfile -t ryms/routes_api:latest .
 
 script:
-  - docker run -e TEST_ENV ryms/routes_api:$TRAVIS_COMMIT /myvenv/bin/pytest
+  - docker run -e TEST_ENV ryms/routes_api:latest /myvenv/bin/pytest
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push ryms/routes_api:$TRAVIS_COMMIT
+  - docker push ryms/routes_api:latest
