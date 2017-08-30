@@ -1,18 +1,15 @@
-FROM ubuntu:17.10
+FROM python:3.6-slim
 LABEL maintainer="yamila.ms@gmail.com"
 
 WORKDIR /
 
 # Install dependencies
 RUN apt-get update
-RUN apt-get install -y -qq curl python3-pip vim
-RUN pip3 install virtualenv
+RUN apt-get install -y -qq curl vim
 
 # Install requirements
-RUN virtualenv -p python3 myvenv
 COPY requirements.txt /routes_api/
-RUN /myvenv/bin/easy_install --upgrade requests
-RUN /myvenv/bin/pip install -r /routes_api/requirements.txt
+RUN pip install -r /routes_api/requirements.txt
 
 # Setup the application
 COPY . /routes_api

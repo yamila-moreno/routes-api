@@ -16,7 +16,7 @@ before_script:
   - docker build -f Dockerfile -t ryms/routes_api:latest .
 
 script:
-  - docker run -e TEST_ENV ryms/routes_api:latest /myvenv/bin/pytest
+  - docker run -e TEST_ENV ryms/routes_api:latest pytest
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
